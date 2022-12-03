@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import string
 import logging
 from functools import reduce
 
@@ -7,9 +8,8 @@ logging.basicConfig(encoding='utf-8', level=logging.ERROR)
 
 class Game(object):
 
-
-    priorities = dict([(chr(x + ord('a')), x + 1) for x in range(26)])
-    priorities.update( dict([(chr(x + ord('A')), x + 27) for x in range(26)]) )
+    alphabet = string.ascii_lowercase + string.ascii_uppercase
+    priorities = dict([(char, ix) for ix,char in enumerate(alphabet, start=1)])
 
     def __init__(self, filename='input'):
         super().__init__()
