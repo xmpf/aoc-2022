@@ -30,6 +30,7 @@ function main {
 
     mkdir -p $dir && cd $dir
     curl -s -O "https://adventofcode.com/2022/day/$date/input" -b "$cookie"
+    cp ../template.py main.py
     popd
 }
 
