@@ -40,12 +40,9 @@ class Game(object):
         stacks = copy.deepcopy(self.stacks)
         for line in self.input[self.split_ix + 2:]:
             how_much, from_stack, to_stack = list(map(int, line.split()[1::2]))
-            popped = []
-            for n in range(how_much):
-                popped.append(stacks[from_stack].pop())
-            if flag is True:
-                popped.reverse()
+            popped = stacks[from_stack][-how_much:] if flag else stacks[from_stack][-how_much:][::-1]
             stacks[to_stack].extend(popped)
+            stacks[from_stack] = stacks[from_stack][:-how_much]
         return ''.join(x[-1] for x in stacks[1:])
 
     def chunkify(self, line, n):
